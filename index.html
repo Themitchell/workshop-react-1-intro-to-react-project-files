@@ -16,13 +16,15 @@
 
 
     <script type="text/babel">
-      function HelloWorldComponent () {
-        const helloWorldText = "Hello World!";
-        return <h1>{helloWorldText}</h1>
+      function HelloWorldComponent (props) {
+        const helloWorldText = `Hello ${props.username}!`;
+        return <h1>{helloWorldText}</h1>;
       }
 
       const root = ReactDOM.createRoot(document.getElementById('root'));
-      root.render(<HelloWorldComponent />);
+
+      const username = "Andy";
+      root.render(<HelloWorldComponent username={username}/>);
     </script>
   </body>
 </html>
