@@ -11,9 +11,14 @@
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 
-    <script>
+    <!-- We need babel to tell the browser how to understand JSX -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+    <script type="text/babel">
       const root = ReactDOM.createRoot(document.getElementById('root'));
-      root.render("Hello, world!");
+      const helloWorldText = "Hello World!";
+      root.render(<h1>{helloWorldText}</h1>);
     </script>
   </body>
 </html>
