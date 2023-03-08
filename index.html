@@ -14,6 +14,9 @@
     <!-- We need babel to tell the browser how to understand JSX -->
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
+    <!-- We need PropTypes for type checking props  -->
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+
 
     <script type="text/babel">
       function HelloWorldComponent (props) {
@@ -21,8 +24,14 @@
         return <h1>{helloWorldText}</h1>;
       }
 
+      HelloWorldComponent.propTypes = {
+        username: PropTypes.string.isRequired
+      }
+
       const root = ReactDOM.createRoot(document.getElementById('root'));
 
+      // Use the console to see what happens if you try to use an
+      // incorrect prop type
       const username = "Andy";
       root.render(<HelloWorldComponent username={username}/>);
     </script>
