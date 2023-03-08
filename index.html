@@ -14,36 +14,20 @@
     <!-- We need babel to tell the browser how to understand JSX -->
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
-    <!-- We need PropTypes for type checking props  -->
-    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
-
-
     <script type="text/babel">
-      function PopUpWindow (props) {
-        return (
-          <div style={{ border: '1px solid grey' }}>
-            {props.children}
-          </div>
-        );
-      }
+      function HelloWorldComponent () {
+        function onClickHandler (event) {
+          alert('Hello world');
+        }
 
-      function SayHello(props) {
-        return <h1>Hello {props.username}!</h1>;
-      }
-
-      function HelloWorldComponent(props) {
-        // Try replacing React.Fragment with a simple div. Look in your
-        // browser inspector and see how the HTML differs
-        return (
-          <PopUpWindow>
-            <SayHello username={props.username} />
-          </PopUpWindow>
-        );
+        return <button onClick={onClickHandler}>Say hello</button>;
       }
 
       const root = ReactDOM.createRoot(document.getElementById('root'));
-      const username = "Andy"
-      root.render(<HelloWorldComponent username={username}/>);
+
+      // Try moving the onClickHandler out of the component, you can
+      // pass it via the props
+      root.render(<HelloWorldComponent />);
     </script>
   </body>
 </html>
