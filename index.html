@@ -20,18 +20,22 @@
 
     <script type="text/babel">
       function HelloWorldComponent (props) {
-        const helloWorldText = `Hello ${props.username}!`;
+        const helloWorldText = `${props.salutation} ${props.username}!`;
         return <h1>{helloWorldText}</h1>;
       }
 
       HelloWorldComponent.propTypes = {
+        salutation: PropTypes.string,
         username: PropTypes.string.isRequired
+      }
+
+      HelloWorldComponent.defaultProps = {
+        salutation: 'Hello'
       }
 
       const root = ReactDOM.createRoot(document.getElementById('root'));
 
-      // Use the console to see what happens if you try to use an
-      // incorrect prop type
+      // Try to override the default salutation
       const username = "Andy";
       root.render(<HelloWorldComponent username={username}/>);
     </script>
