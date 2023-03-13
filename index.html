@@ -19,20 +19,26 @@
 
 
     <script type="text/babel">
+      function PopUpWindow (props) {
+        return (
+          <div style={{ border: '1px solid grey' }}>
+            {props.children}
+          </div>
+        );
+      }
+
       function SayHello(props) {
-        return <p>Hello {props.username}!</p>;
+        return <h1>Hello {props.username}!</h1>;
       }
 
       function HelloWorldComponent(props) {
         // Try replacing React.Fragment with a simple div. Look in your
         // browser inspector and see how the HTML differs
         return (
-          <React.Fragment>
+          <PopUpWindow>
             <SayHello username={props.username} />
-            <SayHello username="World" />
-            <SayHello {...props} />
-          </React.Fragment>
-        )
+          </PopUpWindow>
+        );
       }
 
       const root = ReactDOM.createRoot(document.getElementById('root'));
