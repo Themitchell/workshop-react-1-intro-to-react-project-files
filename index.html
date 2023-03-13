@@ -19,24 +19,24 @@
 
 
     <script type="text/babel">
-      function HelloWorldComponent (props) {
-        const helloWorldText = `${props.salutation} ${props.username}!`;
-        return <h1>{helloWorldText}</h1>;
+      function SayHello(props) {
+        return <p>Hello {props.username}!</p>;
       }
 
-      HelloWorldComponent.propTypes = {
-        salutation: PropTypes.string,
-        username: PropTypes.string.isRequired
-      }
-
-      HelloWorldComponent.defaultProps = {
-        salutation: 'Hello'
+      function HelloWorldComponent(props) {
+        // Try replacing React.Fragment with a simple div. Look in your
+        // browser inspector and see how the HTML differs
+        return (
+          <React.Fragment>
+            <SayHello username={props.username} />
+            <SayHello username="World" />
+            <SayHello {...props} />
+          </React.Fragment>
+        )
       }
 
       const root = ReactDOM.createRoot(document.getElementById('root'));
-
-      // Try to override the default salutation
-      const username = "Andy";
+      const username = "Andy"
       root.render(<HelloWorldComponent username={username}/>);
     </script>
   </body>
