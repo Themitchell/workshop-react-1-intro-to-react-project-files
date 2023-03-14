@@ -15,25 +15,21 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
     <script type="text/babel">
-      function HelloWorldComponent () {
-        // See what happens if you try to setup username as a variable
-        // _without_ using the useState hook. Use the setUsernameHandler
-        // to forcibly update the variable
-        // As a bonus try using props to set the default state in the
-        // hook
-        const [username, setUsername] = React.useState("Andy");
-
-        function setUsernameHandler (event) {
-          // See what happens if you try to modify the username directly
-          // using:
-          // username = event.target.value;
-          setUsername(event.target.value);
+      function InputComponent (props) {
+        function onChangeHandler(event) {
+          props.onChange(event.target.value);
         }
+
+        return <input type="text" onChange={onChangeHandler} value={props.value} />
+      }
+
+      function HelloWorldComponent () {
+        const [username, setUsername] = React.useState("Andy");
 
         return (
           <div>
             <h1>Hello {username}!</h1>
-            <input type="text" onChange={setUsernameHandler} value={username} />
+            <InputComponent onChange={setUsername} value={username} />
           </div>
         );
       }
