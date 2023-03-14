@@ -15,27 +15,27 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
     <script type="text/babel">
-      function InputComponent (props) {
-        function onChangeHandler(event) {
-          props.onChange(event.target.value);
-        }
+      function ListItem(props) {
+        // See what happens if you add the key here instead of below
+        return <li>{props.children}</li>;
+      };
 
-        return <input type="text" onChange={onChangeHandler} value={props.value} />
-      }
+      function UsersList(props) {
+        const listItems = props.users.map(function (user) {
+          return <ListItem key={user.id}>{user.username}</ListItem>;
+        });
 
-      function HelloWorldComponent () {
-        const [username, setUsername] = React.useState("Andy");
-
-        return (
-          <div>
-            <h1>Hello {username}!</h1>
-            <InputComponent onChange={setUsername} value={username} />
-          </div>
-        );
+        return <ul>{listItems}</ul>;
       }
 
       const root = ReactDOM.createRoot(document.getElementById('root'));
-      root.render(<HelloWorldComponent />);
+
+      const users = [
+        { id: 1, username: "Andy" },
+        { id: 2, username: "Bill" },
+        { id: 3, username: "Steve" }
+      ];
+      root.render(<UsersList users={users} />);
     </script>
   </body>
 </html>
